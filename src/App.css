@@ -1,3 +1,74 @@
-ul li {
-  list-style-type: armenian;
+body{
+  background: #c4dfe0;
 }
+
+.app-wrapper {
+  margin: 0 auto;
+  display: grid;
+  width: 1200px;
+  grid-template-areas:
+  "h h"
+  "n c";
+
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  /* grid-gap: 10px*/
+}
+
+/*.content {
+  margin-top: 8px;
+  grid-area: c;
+  background-color: cadetblue;
+  border: solid 2px black ;
+  border-radius: 2px;
+  !*padding: 10px;*!
+}*/
+/*
+.nav{
+  margin: 8px 8px 0 0;
+  grid-area: n;
+  background-color: #199168;
+  border: solid 1px black ;
+  border-radius: 2px;
+  padding: 20px;
+}
+.item a{
+  color: aliceblue;
+  text-decoration: none;
+}
+.item a:hover {
+
+  border-radius: 5px;
+  border: solid 1px #b1f1fc;
+  background: #477377;
+  transition: background 0.5s ease;
+}
+
+.item a.activeLink {
+  color: gold;
+
+  border-radius: 5px;
+  border: solid 1px black;
+  background: #477377;
+  transition: background 0.5s ease;
+}*/
+
+
+
+/*
+.logoIcon{
+  width: 70px;
+}
+.header {
+  display: flex;
+  grid-area: h;
+  background-color: aqua;
+  border: solid 2px black ;
+  border-radius: 2px;
+}
+.titleLogo{
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+*/

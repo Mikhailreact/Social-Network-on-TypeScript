@@ -1,14 +1,21 @@
 
 .header {
-	margin-bottom: 8px;
-	grid-area: h;
-	background-color: aqua;
-	border: solid 2px black ;
-	border-radius: 2px;
- }
-.logoIcon{
-	width: 68px;
+    display: flex;
+    margin-bottom: 8px;
+    grid-area: h;
+    background-color: aqua;
+    border: solid 2px black;
+    border-radius: 2px;
+
 }
-.titleLogo{
-	text-align: center;
+
+.logoIcon {
+  /*  flex-direction: row;*/
+    width: 68px;
+}
+
+.titleHeader {
+   margin: 0 auto;
+   /* flex-direction: row;*/
+    color: black;
 }
