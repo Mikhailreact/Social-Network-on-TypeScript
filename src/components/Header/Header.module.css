@@ -1,0 +1,14 @@
+
+.header {
+	margin-bottom: 8px;
+	grid-area: h;
+	background-color: aqua;
+	border: solid 2px black ;
+	border-radius: 2px;
+ }
+.logoIcon{
+	width: 68px;
+}
+.titleLogo{
+	text-align: center;
+}

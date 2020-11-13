@@ -1,26 +1,32 @@
 .nav{
+	margin-right: 8px;
 	grid-area: n;
+	display: block;
 	background-color: #199168;
-	border: solid 1px black ;
+	border: solid 2px black ;
 	border-radius: 2px;
-	padding: 20px;
+	padding: 15px;
  }
- 
  .item a{
-	 color: aliceblue;
+	 display: block;
+	 margin-bottom: 5px;
+	 font-size: 20px;
+	 color: navajowhite;
 	 text-decoration: none;
+	 cursor: pointer;
+
+
  }
 .item a:hover {
-
+	max-width: 90px;
 	border-radius: 5px;
-	border: solid 1px #b1f1fc;
-	background: #477377;
+	border: solid 1px #f8fafa;
+	background: #133b81;
 	transition: background 0.5s ease;
 }
 
  .item a.activeLink {
 	 color: gold;
-
 	 border-radius: 5px;
 	 border: solid 1px black;
 	 background: #477377;
