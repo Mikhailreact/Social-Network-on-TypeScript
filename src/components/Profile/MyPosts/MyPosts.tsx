@@ -1,10 +1,50 @@
-import React from 'react';
+import React from "react";
 import s from './MyPosts.module.css'
-import Posts from "./Post/Post";
-import Like from "./Post/like";
-import state from "../../../redux/state";
+import {Post} from "./Post/Post";
 
-const MyPosts = (props) => {
+
+
+export const MyPosts = () => {
+    return(
+    <div>
+        <textarea></textarea>
+        <button>Add post</button>
+        <button>Remove</button>
+       {/* <div>My posts</div>
+        <div>New post</div>*/}
+        <div className={s.posts}>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+        </div>
+
+    </div>
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*const MyPosts = (props) => {
 
     let postsElements =
         props.posts.map( p => <Posts massage={p.message} likesCount={p.likesCount}/>);
@@ -23,7 +63,7 @@ window.state = state;
     }
 
     return (
-        <div className={s.postsBock}>
+        <div className={s.postsBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
@@ -42,5 +82,5 @@ window.state = state;
     )
 }
 
-export default MyPosts;
+export default MyPosts;*/
 
