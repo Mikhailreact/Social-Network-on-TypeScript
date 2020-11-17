@@ -3,44 +3,28 @@ import s from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 
 
-
 export const MyPosts = () => {
-    return(
-    <div>
-        <textarea></textarea>
-        <button>Add post</button>
-        <button>Remove</button>
-       {/* <div>My posts</div>
-        <div>New post</div>*/}
-        <div className={s.posts}>
-            <Post message={'Hi, how are you?'} likeCount={20}/>
-            <Post message={'It is my first post'} likeCount={25}/>
+    return (
+        <div className={s.postsBlock}>
+            <h3>My post</h3>
+            <div>
+                <textarea></textarea>
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
+            <div>
+                <button>Remove</button>
+            </div>
+            <div className={s.posts}>
+                <Post message={'Hi, how are you?'} likeCount={20}/>
+                <Post message={'It is my first post'} likeCount={25}/>
+
+            </div>
 
         </div>
-
-    </div>
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*const MyPosts = (props) => {

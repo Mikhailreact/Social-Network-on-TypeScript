@@ -1,19 +1,15 @@
 import React from 'react';
-import s from  './Profile.module.css'
+import s from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
+import {ProfileInfo} from "./Profileinfo/Profileinfo";
 
 
 export const Profile = () => {
 
     return (
-        <div /*className={s.content}*/>
-            <div>
-                <img src={"https://cdn.pixabay.com/photo/2015/02/24/15/41/dog-647528_960_720.jpg"} alt={'Картинка'}/>
-            </div>
-            <div>Ava + description</div>
-            <div>
-                <MyPosts/>
-            </div>
+        <div>
+            <ProfileInfo/>
+            <MyPosts/>
         </div>
 
     )
