@@ -9,8 +9,10 @@
  }
  .item a{
 	 display: block;
+	 width: min-content;
 	 margin-bottom: 5px;
 	 font-size: 20px;
+	 padding: 0 5px 0 5px;
 	 color: navajowhite;
 	 text-decoration: none;
 	 cursor: pointer;
@@ -18,7 +20,7 @@
 
  }
 .item a:hover {
-	max-width: 90px;
+
 	border-radius: 5px;
 	border: solid 1px #f8fafa;
 	background: #133b81;
