@@ -1,4 +1,11 @@
-import {renderTree} from "../render";
+
+let  onChange = ( ) => {
+    console.log("Hello!");
+}
+
+export const subscribe = (callback: () => void) => {
+    onChange = callback;
+}
 
 export type MessagesType = {
     id: number
@@ -65,32 +72,11 @@ export let addPost = (postText: string) => {
         likesCount: 0
     };
     state.profilePage.posts.push(newPost);
-    renderTree(state);
+    state.profilePage.newPostText = '';
+    onChange();
 }
 export const changeNewText = (newText: string) => {
     state.profilePage.newPostText = newText;
-    renderTree(state);
+    onChange();
 }
-
-
-
-/*export let updateNewPostText = (newText) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

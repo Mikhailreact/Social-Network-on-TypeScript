@@ -18,7 +18,8 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
 
     let addPosts = () => {
-            props.addPost(props.newPostText)
+        props.addPost(props.newPostText)
+        props.addPost("")
     }
     const newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.changeNewText(e.currentTarget.value)
