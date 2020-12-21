@@ -1,3 +1,7 @@
+import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./profile-reducer";
+import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 export type MessagesType = {
     id: number
     message: string
@@ -18,32 +22,39 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessagesType>
+    newMessageBody: string
 }
 export type SidebarType = {}
 
-export type RootStateType = {
+export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
 
 export type StoreType = {
-    _state: RootStateType
-    changeNewText: (newText: string) => void
-    addPost: (postText: string) => void
-    _onChange: () => void
+    _state: StateType
     subscribe: (callback: () => void) => void
-    getState: () => RootStateType
+    getState: () => StateType
+    dispatch: (action: ActionsTypes) => void
+    _callSubscriber: () => void
 }
 
-const store: StoreType = {
+export type ActionsTypes =
+    ReturnType<typeof addPostActionCreator> |
+    ReturnType<typeof updateNewPostTextActionCreator> |
+    ReturnType<typeof updateNewMessageBodyCreator> |
+    ReturnType<typeof sendMessageCreator>
+
+let store: StoreType = {
     _state: {
         profilePage: {
-            newPostText: "",
             posts: [{id: 1, message: 'Hi, how are you?', likesCount: 12},
                 {id: 2, message: 'It\'s my first post', likesCount: 11},
-                {id: 3, message: 'blabla', likesCount: 1100},
-                {id: 4, message: 'dada', likesCount: 11},],
+                {id: 2, message: 'blabla', likesCount: 1100},
+                {id: 2, message: 'dada', likesCount: 11},],
+            newPostText: '',
+
         },
         dialogsPage: {
             dialogs: [{id: 1, name: 'Dimych'},
@@ -57,38 +68,33 @@ const store: StoreType = {
                 {id: 2, message: 'How is your it-kamasutra?'},
                 {id: 3, message: 'yo'},
                 {id: 4, message: 'yo'},
-                {id: 5, message: 'yo'}
-            ]
+                {id: 5, message: 'yo'},
+            ],
+            newMessageBody: ""
         },
-        sidebar: {
-            name: "Dfytr"
-        }
+        sidebar: {}
     },
-    changeNewText(newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._onChange();
-    },
-    addPost(postText: string) {
-        let newPost: PostType = {
-            id: new Date().getTime(),
-            message: postText,
-            likesCount: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._onChange();
-    },
-    _onChange() {
-        console.log("state changed!");
+    _callSubscriber() {
+        console.log('State is change');
     },
 
-    subscribe(callback) {
-        this._onChange = callback;
-    },
     getState() {
         return this._state;
     },
+    subscribe(observer) {
+        this._callSubscriber = observer; // Мы переприсвоили действие функции и теперь она вызывает запуск rerenderEntireTree в index.js , котороя в свою очередь запускает отррисовку App.
+    },
 
+    dispatch(action) { // { type: 'ADD-POST' }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        //this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+        this._callSubscriber();
+
+
+    }
 }
 
 export default store;
