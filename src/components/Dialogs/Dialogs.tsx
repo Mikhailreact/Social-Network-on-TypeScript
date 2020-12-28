@@ -2,31 +2,32 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css';
 import {DialogItem} from "./DialogsItem/DialogsItem";
 import {Message} from "./Message/Message";
-import {ActionsTypes, DialogsPageType, StateType, StoreType} from "../../redux/state";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import {DialogsPageType} from "../../redux/store";
 
 type DialogsPropsType = {
     state: DialogsPageType
-    dispatch: (action: ActionsTypes) => void
+    updateNewMessageBody: (body: string) => void
+    sendMessage: () => void
 }
 export const Dialogs = (props: DialogsPropsType) => {
 
-    const dialogsElements = props.state.dialogs.map( dialog => <DialogItem name={dialog.name} id={dialog.id} /> );
-    const messagesElements = props.state.messages.map( m => <Message message={m.message}/> );
+    const dialogsElements = props.state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
+    const messagesElements = props.state.messages.map(message => <Message message={message.message}/>);
     const newMessageBody = props.state.newMessageBody;
 
     const onSendMessageClick = () => {
-        props.dispatch(sendMessageCreator());
+        props.sendMessage();
     }
     const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateNewMessageBodyCreator(e));
+        let body = e.target.value;
+        props.updateNewMessageBody(body);
+        //props.dispatch(updateNewMessageBodyCreator(body));
     }
-
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                { dialogsElements }
+                {dialogsElements}
             </div>
             <div className={s.messages}>
                 <div>{messagesElements}</div>
@@ -35,7 +36,9 @@ export const Dialogs = (props: DialogsPropsType) => {
                                    onChange={onNewMessageChange}
                                    placeholder={'Enter your message'}/>
                     </div>
-                    <div><button onClick={onSendMessageClick}>Send</button></div>
+                    <div>
+                        <button onClick={onSendMessageClick}>Send</button>
+                    </div>
                 </div>
             </div>
         </div>
